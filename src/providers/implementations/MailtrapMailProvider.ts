@@ -1,5 +1,5 @@
 import { IMailProvider, IMessage } from "../IMailProvider";
-import nodemailer from 'nodemailer';
+import nodemailer from "nodemailer";
 import Mail from "nodemailer/lib/mailer";
 
 export class MailtrapMailProvider implements IMailProvider {
@@ -7,15 +7,15 @@ export class MailtrapMailProvider implements IMailProvider {
 
   constructor() {
     this.transporter = nodemailer.createTransport({
-      host: 'smtp.mailtrap.io',
+      host: "",
       port: 2525,
       auth: {
-        user: 'b1a75b8d0a1403',
-        pass: '791972d1bf875c'
-      }
-    })
+        user: "",
+        pass: "",
+      },
+    });
   }
-  
+
   async sendMail(message: IMessage): Promise<void> {
     await this.transporter.sendMail({
       to: {
@@ -28,6 +28,6 @@ export class MailtrapMailProvider implements IMailProvider {
       },
       subject: message.subject,
       html: message.body,
-    })
+    });
   }
 }
